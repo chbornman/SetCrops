@@ -36,7 +36,7 @@ class FilmDataset(Dataset):
     def get_coordinates_for_image(self, img_name):
         # Determine the base name (without extension) and construct the crop data file path
         base_name = os.path.splitext(img_name)[0]
-        crop_data_path = os.path.join("crop_data_full", base_name + ".txt")
+        crop_data_path = os.path.join("crop_data", base_name + ".txt")
 
         # Check if the crop data file exists
         if not os.path.exists(crop_data_path):
@@ -61,7 +61,7 @@ transform = transforms.Compose([
     transforms.ToTensor()
 ])
 
-dataset = FilmDataset(original_dir='original_files_full', transform=transform)
+dataset = FilmDataset(original_dir='original_files', transform=transform)
 dataloader = DataLoader(dataset, batch_size=4, shuffle=True)
 
 # Model, Loss Function, and Optimizer
